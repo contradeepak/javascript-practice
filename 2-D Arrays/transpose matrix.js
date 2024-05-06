@@ -1,4 +1,4 @@
-867. Transpose Matrix
+867. Transpose Matrix (See leetcode for Daigram and full explanation).
 Solved
 Easy
 Topics
