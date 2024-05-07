@@ -1,0 +1,29 @@
+1275. Find Winner on a Tic Tac Toe Game
+
+
+For more info see the problem on Leetcode, + pLEASE SEE OTER SOLUTIONS THAT ARE OPTIMIZED AND PRACTICE THEM ALSO.
+pLEASE SEE OTER SOLUTIONS THAT ARE OPTIMIZED AND PRACTICE THEM ALSO.
+pLEASE SEE OTER SOLUTIONS THAT ARE OPTIMIZED AND PRACTICE THEM ALSO.
+
+Solution:
+
+   const rows = new Array(3).fill(0);
+    const cols = new Array(3).fill(0);
+    let diagonal = 0;
+    let antidiagonal = 0;
+    let player = 1;
+    for(let [a,b] of moves) {
+        rows[a] += player;
+        cols[b] += player;
+        if (a === b) diagonal += player;
+        if (a === 2-b) antidiagonal += player;
+        /* adding on row to check despite any column */
+        if (rows[a] === 3 || cols[b] === 3 || diagonal === 3 || antidiagonal === 3) 
+            return 'A';
+        /* adding on column to check despite any row */
+        if (rows[a] === -3 || cols[b] === -3 || diagonal === -3 || antidiagonal === -3) 
+            return 'B';
+        player *= -1;
+    }
+    return moves.length === 9 ? 'Draw' : 'Pending';
+
