@@ -1,28 +1,38 @@
 <html>
     <head>
         <body>
+     
             <form>
-            <fieldset>
-           
-            <legend>This is a sample form</legend><br>
-            <label>Enter your full name</label><br>
-            <input type="name" id="name"/><br>
-            <label>Enter your Email</label><br>
-            <input type="email" id="name"/><br>
-            <label>Enter your Password</label><br>
-            <input type="password" id="password"/><br>
-            <label>Enter your address</label><br>
-            <textarea></textarea><br>
-
-          <label>Enter your Birthdate</label><br>
-          <input type="date" id="date" name="date"/><br>
-          <label>Enter your gender</label><br>
-          <input type="radio" id="gender" name="gender"/>Male<br>
-          <input type="radio" id="gender" name="gender"/>Female<br>
-          <input type="radio" id="gender" name="gender"/>Others<br>
-        <input type="submit" value="submit"/>
-        </form>
-    </fieldset>
+                
+                <fieldset>
+                    <legend>This is a form sample</legend><br>
+                    <label>Please enter your full name</label><br>
+                    <input type="text" name="name"><br>
+                    <label>Please enter your password</label>
+                    <input type="password" name="pass"><br>
+                    <label>Please confirm your password</label>
+                    <input type="password" name="pass"><br>
+                    <label>Please enter your Address</label><br>
+                    <textarea></textarea><br>
+                   <label>Please enter your Birthdate</label>
+                   <input type="date"><br>
+                    <label>Please enter your Gender</label><br>
+                    <input type="radio" name="gender" value="male">Male<br>
+                    <input type="radio">Female<br>
+                    <input type="radio">Others<br>
+                    
+                    <button onclick="myFunction()">Submit</button>
+                    <button onclick="myFunction()">Click me</button>
+                </fieldset>
+            </form>
+            <script>
+                function myFunction() {
+                  alert(location.hostname);
+                  document.getElementById("demo").innerHTML = "Hello World";
+                }
+                </script>
+                
         </body>
+      
     </head>
 </html>
