@@ -1,0 +1,28 @@
+2007. Find Original Array From Doubled Array
+
+An integer array original is transformed into a doubled array changed by appending twice the value of every element in original, and then randomly shuffling the resulting array.
+
+Given an array changed, return original if changed is a doubled array. If changed is not a doubled array, return an empty array. The elements in original may be returned in any order.
+
+
+Solution:
+
+var findOriginalArray = function(changed) {
+      changed.sort((a, b) => a - b);
+    let res = [];
+    let map = new Map();
+
+    for (let i = 0; i < changed.length; i++) {
+        let c = changed[i];
+        let o = map.get(c / 2);
+
+        if (c % 2 === 1 || !o) {
+            map.set(c, (map.get(c) ?? 0) + 1);
+        }
+        else {
+            res.push(c / 2);
+            map.set(c / 2, o - 1);
+        }
+    }
+    return changed.length / res.length === 2 ? res : [];
+};
