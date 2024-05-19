@@ -1,0 +1,16 @@
+387. First Unique Character in a String
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+Solution:
+
+var firstUniqChar = function(s) {
+      let ob={}
+    for(let i=0;i<s.length;i++){
+        ob[s[i]]=!ob[s[i]]?1:ob[s[i]]+1}
+    function find(){
+      for(let i in ob){
+     if(ob[i]==1){
+         return i}}}
+    return s.indexOf(find())
+};
