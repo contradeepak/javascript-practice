@@ -1,0 +1,45 @@
+Leetcode 56:
+
+Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
+
+ 
+
+Example 1:
+
+Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
+
+Solution:
+
+var merge = function(intervals) {
+    // Sort intervals based on the start time
+    intervals.sort((a, b) => a[0] - b[0]);
+    
+    // Initialize an array to store the merged intervals
+    let mergedIntervals = [];
+    
+    // Iterate through each interval in the sorted array
+    for (let i = 0; i < intervals.length; i++) {
+        // Initialize variables for the current interval's start, end, and the index to iterate through the array
+        let j = i;
+        let start = intervals[i][0];
+        let end = intervals[i][1];
+        
+        // Iterate through the intervals starting from the current index
+        while (j < intervals.length - 1 && (end >= intervals[j + 1][0] || start >= intervals[j + 1][0])) {
+            // Update the end time if the current interval overlaps with the next interval
+            end = Math.max(intervals[j + 1][1], end);
+            j++;
+        }
+        
+        // Add the merged interval to the result array
+        mergedIntervals.push([start, end]);
+        
+        // Update the outer loop index to skip intervals that have been merged
+        i = j;
+    }
+    
+    // Return the array of merged intervals
+    return mergedIntervals;
+};
