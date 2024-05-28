@@ -23,3 +23,6 @@ function nge(arr){
 
 let arr = [2,5,6,3,9,12,20,13,7,1,8,16,19];
 console.log(nge(arr));
+
+// Time Complexity : O(n)
+// Space Complexity : O(n)
