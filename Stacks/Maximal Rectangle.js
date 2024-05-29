@@ -1,0 +1,34 @@
+
+85. Maximal Rectangle
+
+Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+
+Solution:
+
+var maximalRectangle = function(matrix) {
+    if (!matrix.length) {
+     return 0;
+ }
+ 
+ const n = matrix[0].length;
+ const heights = new Array(n + 1).fill(0);
+ let maxArea = 0;
+ 
+ for (let row of matrix) {
+     for (let i = 0; i < n; i++) {
+         heights[i] = row[i] === '1' ? heights[i] + 1 : 0;
+     }
+     
+     const stack = [-1];
+     for (let i = 0; i < n + 1; i++) {
+         while (heights[i] < heights[stack[stack.length - 1]]) {
+             const h = heights[stack.pop()];
+             const w = i - stack[stack.length - 1] - 1;
+             maxArea = Math.max(maxArea, h * w);
+         }
+         stack.push(i);
+     }
+ }
+ 
+ return maxArea;    
+};
