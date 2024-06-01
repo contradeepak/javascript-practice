@@ -1,0 +1,2 @@
+    A tree in which every node can get max two children are called as Binary tress.
+    
