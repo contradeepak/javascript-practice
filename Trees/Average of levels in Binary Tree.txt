@@ -1,0 +1,30 @@
+637. Average of Levels in Binary Tree
+
+Given the root of a binary tree, return the average value of the nodes on each level in the form of an array. Answers within 10-5 of the actual answer will be accepted.
+
+Solution :
+
+var averageOfLevels = function(root) {
+       // Initialize the queue with the root node.
+    let queue = [root];
+    // Initialize the array to hold averages of each level.
+    let ans = [];
+    while (queue.length > 0) {
+        let levelSize = queue.length;  // The number of nodes at current level.
+        let sum = 0;
+        for (let i = 0; i < levelSize; i++) {
+            let currNode = queue.shift();
+            if (currNode) {
+                sum+=currNode.val;
+                if(currNode.left){
+                    queue.push(currNode.left);
+                }
+                if(currNode.right){
+                    queue.push(currNode.right);
+                }
+            }
+        }
+        ans.push(sum/levelSize);
+    }
+    return ans;
+};
