@@ -1,0 +1,22 @@
+105. Construct Binary Tree from Preorder and Inorder Traversal
+
+Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree.
+
+Solution :
+
+
+var buildTree = function(preorder, inorder) {
+    const getTree = (left = 0, right = preorder.length - 1) => {
+		if (left > right) return null;
+
+		const node = preorder.shift();
+		const treeNode = new TreeNode(node);
+		const index = inorder.indexOf(node);
+
+		treeNode.left = getTree(left, index - 1);
+		treeNode.right = getTree(index + 1, right);
+		return treeNode;
+	};
+
+	return getTree();
+};
