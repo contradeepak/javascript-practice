@@ -1,0 +1,49 @@
+295. Find Median from Data Stream
+
+The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values.
+
+For example, for arr = [2,3,4], the median is 3.
+For example, for arr = [2,3], the median is (2 + 3) / 2 = 2.5.
+Implement the MedianFinder class:
+
+MedianFinder() initializes the MedianFinder object.
+void addNum(int num) adds the integer num from the data stream to the data structure.
+double findMedian() returns the median of all elements so far. Answers within 10-5 of the actual answer will be accepted.
+
+
+Solution :
+
+
+var MedianFinder = function() {
+    this.item = []
+};
+
+MedianFinder.prototype.addNum = function(num) {
+        const  addItem = number =>{
+        let start = 0;
+        let end = this.item.length;
+        while (start < end){
+            let mid = Math.floor((start+end)/2);
+            if (number > this.item[mid]) start = mid+1;
+            else end = mid;
+        }
+        this.item.splice(start,0,number);
+         }
+        if (this.item.length === 0) this.item.push(num);
+        else addItem(num);
+ 
+};
+
+MedianFinder.prototype.findMedian = function() {
+    let len = this.item.length
+     
+    if(len%2 === 0) {
+        const index1 = len/2 - 1
+        const index2 = index1 + 1
+        return (this.item[index1] + this.item[index2])/2
+    }
+    else{
+       const index = (len +1)/2 - 1
+        return this.item[index]
+    }
+};
