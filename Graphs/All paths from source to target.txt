@@ -1,0 +1,24 @@
+797. All Paths From Source to Target
+
+
+Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1, find all possible paths from node 0 to node n - 1 and return them in any order.
+
+The graph is given as follows: graph[i] is a list of all nodes you can visit from node i (i.e., there is a directed edge from node i to node graph[i][j]).
+
+
+Solution :
+
+
+var allPathsSourceTarget = function(graph) {
+      const result = [];
+    
+    let dfs = function(node, path){
+        if (node === graph.length-1) result.push(path)
+        
+        for (let neighbour of graph[node]){
+            dfs (neighbour, path.concat([neighbour]));
+        }
+    }
+    dfs(0, [0])
+    return result;
+};
