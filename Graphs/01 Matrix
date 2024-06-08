@@ -1,0 +1,60 @@
+542. 01 Matrix
+
+Given an m x n binary matrix mat, return the distance of the nearest 0 for each cell.
+
+The distance between two adjacent cells is 1.
+
+Solution :
+
+var updateMatrix = function(mat) {
+ const rows = mat.length;
+    const cols = mat[0].length;
+    const queue = [];
+    const result = new Array(mat.length).fill(null).map(() => new Array(mat[0].length).fill(-1))
+
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+
+            if (mat[i][j] === 0) {
+                queue.push([i, j])
+                result[i][j] = 0;
+            }
+
+        }
+    }
+
+    console.log(result)
+
+    while (queue.length) {
+        const [i, j] = queue.shift();
+
+        if (isNearest(mat, i + 1, j) && result[i + 1][j] === -1) {
+
+            queue.push([i + 1, j])
+            result[i + 1][j] = result[i][j] + 1;
+
+        }
+        if (isNearest(mat, i - 1, j) && result[i - 1][j] === -1) {
+            queue.push([i - 1, j])
+            result[i - 1][j] = result[i][j] + 1;
+        }
+        if (isNearest(mat, i, j + 1) && result[i][j + 1] === -1) {
+            queue.push([i, j + 1])
+            result[i][j + 1] = result[i][j] + 1;
+        }
+        if (isNearest(mat, i, j - 1) && result[i][j - 1] === -1) {
+            queue.push([i, j - 1])
+            result[i][j - 1] = result[i][j] + 1;
+        }
+    }
+    return result
+};
+
+function isNearest(mat, i, j) {
+
+    if (i < 0 || j < 0 || i >= mat.length || j >= mat[0].length) return false;
+
+    return true;
+
+
+};
