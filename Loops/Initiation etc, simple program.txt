@@ -1,0 +1,48 @@
+let users = ["deepak", "ashutosh", "aman", "Diljeet"]
+
+
+// initiation section
+// condition section
+// incrementation section
+
+for(let i=0; i<4; i++){
+    console.log(users[i]);
+}
+
+
+
+//////////////////////////////////
+
+
+let users = ["deepak", "ashutosh", "aman", "Diljeet"]
+
+let totalusers = users.length;
+// initiation section
+// condition section
+// incrementation section
+
+for(let i=0; i<totalusers; i++){
+    console.log(users[i]);
+}
+
+
+Now it has become dynamic.
+
+e.g--
+
+
+let users = ["deepak", "ashutosh", "aman", "Diljeet", "Bisleri", "Avshesh Series"]
+
+let totalusers = users.length;
+// initiation section
+// condition section
+// incrementation section
+
+for(let i=0; i<totalusers; i++){
+    console.log(users[i]);
+}
+
+
+
+
+

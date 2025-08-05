@@ -1,0 +1,49 @@
+Implement a function deepEqual that performs a deep comparison between two values. It returns true if two input values are deemed equal, and returns false if not.
+
+You can assume there are only JSON-serializable values (numbers, strings, boolean, null, objects, arrays).
+There wouldn't be cyclic objects, i.e. objects with circular references.
+
+deepEqual('foo', 'foo'); // true
+deepEqual({ id: 1 }, { id: 1 }); // true
+deepEqual([1, 2, 3], [1, 2, 3]); // true
+deepEqual([{ id: '1' }], [{ id: '2' }]); // false
+
+
+Solution
+
+/**
+ * @param {*} valueA
+ * @param {*} valueB
+ * @return {boolean}
+ */
+export default function deepEqual(valueA, valueB) {
+  // Strict equality handles primitives and identical object references
+  if (valueA === valueB) return true;
+
+  // If either is not an object or is null, they're not deeply equal
+  if (
+    typeof valueA !== 'object' || valueA === null ||
+    typeof valueB !== 'object' || valueB === null
+  ) {
+    return false;
+  }
+
+  // If one is array and the other isn't, return false
+  if (Array.isArray(valueA) !== Array.isArray(valueB)) return false;
+
+  const keysA = Object.keys(valueA);
+  const keysB = Object.keys(valueB);
+
+  // Different number of keys = not equal
+  if (keysA.length !== keysB.length) return false;
+
+  // Check every key in valueA
+  for (const key of keysA) {
+    // If valueB is missing a key or the values aren't deeply equal
+    if (!valueB.hasOwnProperty(key) || !deepEqual(valueA[key], valueB[key])) {
+      return false;
+    }
+  }
+
+  return true;
+}
